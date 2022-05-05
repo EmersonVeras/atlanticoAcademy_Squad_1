@@ -1,6 +1,6 @@
 # Identifying Relevant Terms in Medical Records Through Natual Language Processing
 
-This project provides automated identification of relevant terms in medical records by use of classical NLP algorithms.
+This project provides automated identification of relevant terms in medical records by use of classical NLP algorithms. Input is written in Portuguese.
 
 This is an assignment from the [Instituto Atlântico's Cognitive Computing Bootcamp](https://www.atlantico.com.br/academy-bootcamp/).
 
@@ -21,7 +21,7 @@ This is an assignment from the [Instituto Atlântico's Cognitive Computing Bootc
 
 4. Run the application entry point:
 
-`python3 main.py`
+`python3  app_nlp_project.py`
 
 ## Team (**Squad 1**)
 
