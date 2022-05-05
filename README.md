@@ -1,6 +1,8 @@
-# Identifying Relevant Terms in Medical Records Through Natual Language Processing
+# Identifying Relevant Terms in Medical Records Through Natural Language Processing
 
-This project provides automated identification of relevant terms in medical records by use of classical NLP algorithms. Input is written in Portuguese.
+This project provides automated identification of relevant terms in medical records by use of classical NLP algorithms. 
+
+Input texts are written in Portuguese.
 
 This is an assignment from the [Instituto Atlântico's Cognitive Computing Bootcamp](https://www.atlantico.com.br/academy-bootcamp/).
 
