@@ -21,7 +21,15 @@ This is an assignment from the [Instituto Atlântico's Cognitive Computing Bootc
 
 `pip install -r requirements.txt`
 
-4. Run the application entry point:
+4. Install additional packages, if needed
+
+ > Nltk and stanza libraries have additional packages that have to be downloaded
+
+`python3 src/nlp/utils/nltk_download.py`
+
+`python3 src/nlp/utils/stanza_download.py`
+
+5. Run the application entry point:
 
 `python3  app_nlp_project.py`
 
