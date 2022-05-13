@@ -1,5 +1,6 @@
 import nltk
 import stanza
+# import src.utils.downloads
 
 class TextPreprocessor:
 
@@ -11,11 +12,10 @@ class TextPreprocessor:
             for word in sent.words:
                 if not word.pos in ['PUNCT', 'NUM', 'DET', 'SYM']:
                     pos.add(word.pos)
-                    #print(word, word.lemma)
                     tokens.append(word.lemma)
         
         stopwords = nltk.corpus.stopwords.words('portuguese')
-
-        print(pos)
                
         return [token for token in tokens if not token in stopwords]
+
+
