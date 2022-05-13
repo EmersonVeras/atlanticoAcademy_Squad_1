@@ -1,3 +1,6 @@
 pymupdf
 nltk
 stanza
+mycolorpy
+matplotlib
+networkx
