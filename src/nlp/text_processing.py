@@ -44,16 +44,16 @@ def get_data_information(texts):
     idf = df.copy()
     idf.update((x, math.log10(float(n_docs/y))) for x, y in idf.items()) #IDF calculation
 
-    # tf_idf = []
-    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[0]}) # TF_IDF calculation from the first document
-    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[1]}) # TF_IDF calculation from the second document
-    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[2]}) # TF_IDF calculation from the third document
+    tf_idf = []
+    tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[0]}) # TF_IDF calculation from the first document
+    tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[1]}) # TF_IDF calculation from the second document
+    tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[2]}) # TF_IDF calculation from the third document
 
     # tf_idf_mean = dict(Counter(tf_idf[0]) + Counter(tf_idf[1]) + Counter(tf_idf[2]))
 
-    tf_idf = {x:y*tf_mean[x] for x, y in idf.items()}
+    tf_idf_mean = {x:y*tf_mean[x] for x, y in idf.items()}
 
-    return tf, df, idf, tf_idf, tf_mean
+    return tf, df, idf, tf_idf, tf_mean, tf_idf_mean
 
 
 def get_near_terms(words, tf, tf_idf):
@@ -88,29 +88,24 @@ def get_near_terms(words, tf, tf_idf):
 
 def create_dataframe(tf, df, idf, tf_idf):
     
-    words = []
-    words.append([_word for _word in tf[0]] + [_word for _word in tf[1]] + [_word for _word in tf[2]])
-    
-    tf_list = []
-    tf_list.append([_tf for _tf in tf[0].values()] + [_tf for _tf in tf[1].values()] + [_tf for _tf in tf[2].values()])
-
-    df = list(df.values())
+    words = list(tf.keys())
+    tf_list = list(tf.values())
+    df_list = list(df.values())
    
-    idf = list(idf.values())
+    idf_list = list(idf.values())
     
-    tf_idf_list = []
-    tf_idf_list.append([_tf_idf for _tf_idf in tf_idf[0].values()]+[_tf_idf for _tf_idf in tf_idf[1].values()]+[_tf_idf for _tf_idf in tf_idf[2].values()])
-    
-    print(len(np.array(words).flatten()), len(np.array(tf_list).flatten()), len(np.array(df).flatten()), 
-          len(np.array(idf).flatten()), len(np.array(tf_idf_list).flatten()))
+    tf_idf_list = list(tf_idf.values())
+
+    # print(len(words), len(tf_list), len(np.array(df_list).flatten()), 
+    #       len(np.array(idf_list).flatten()), len(np.array(tf_idf_list).flatten()))
     
 
-    # data = {'Words': np.array(words).flatten(), 'tf': np.array(tf_list).flatten(),
-    #         'df': np.array(df_list).flatten(), 'idf': np.array(idf_list).flatten(), 'tf_idf': np.array(tf_idf_list).flatten()}  
-    # new_dataframe = pd.DataFrame(data)
-    # print(new_dataframe)
+    data = {'Words': words, 'tf': tf_list,
+            'df': np.array(df_list).flatten(), 'idf': np.array(idf_list).flatten(), 'tf_idf': np.array(tf_idf_list).flatten()}  
+    new_dataframe = pd.DataFrame(data)
+    return new_dataframe
     
-    
-    # print(words)
-    # return tf
+def generate_csv(file, database):
+    df = database
+    return df.to_csv(file, index = False)
     
