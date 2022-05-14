@@ -16,6 +16,7 @@ stage0 = preprocessor.transform(pdf_files[0])
 text_tokenized = [preprocessor.transform(text) for text in pdf_files]
 tf, idf, tf_idf = txt_process.get_data_information(text_tokenized)
 
-# print(tf_idf[0])
+near_words_list = txt_process.get_near_terms(text_tokenized[0], tf[0], tf_idf[0])
+print(near_words_list)
 
 

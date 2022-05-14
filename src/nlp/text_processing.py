@@ -2,6 +2,7 @@ from collections import Counter
 import math
 from nltk import FreqDist
 
+
 def calculate_tf(frequency, total_words):
     """
     This function is used to calculate the TF value using the frequency and the frequency sum from the words.
@@ -39,9 +40,34 @@ def get_data_information(texts):
     idf.update((x, math.log10(float(n_docs/y))) for x, y in idf.items()) #IDF calculation
 
     tf_idf = []
-    tf_idf.append([{x:y*tf[0][x] for x, y in idf.items() if x in tf[0]}]) # TF_IDF calculation from the first document
-    tf_idf.append([{x:y*tf[1][x] for x, y in idf.items() if x in tf[1]}]) # TF_IDF calculation from the second document
-    tf_idf.append([{x:y*tf[2][x] for x, y in idf.items() if x in tf[2]}]) # TF_IDF calculation from the third document
+    tf_idf.append({x:y*tf[0][x] for x, y in idf.items() if x in tf[0]}) # TF_IDF calculation from the first document
+    tf_idf.append({x:y*tf[1][x] for x, y in idf.items() if x in tf[1]}) # TF_IDF calculation from the second document
+    tf_idf.append({x:y*tf[2][x] for x, y in idf.items() if x in tf[2]}) # TF_IDF calculation from the third document
 
     return tf, idf, tf_idf
 
+
+def get_near_terms(words, tf, tf_idf):
+    """
+    Get the two nearest terms from the 5 main words from a document.
+
+    :param words: Document tokens pre-processed.
+    :param tf: TF from the document.
+    :param tf_idf: TF-IDF from the document.
+
+    :return: A dictionary with the nearest words and the respective tf.
+    """
+
+    near_words_list = {}
+    tf_idf_counter = Counter(tf_idf)
+    five_most_common = dict(tf_idf_counter.most_common(5)).keys()
+
+    for word in five_most_common:
+        near_word = {}
+        for i, word_compare in enumerate(words):
+            if i != 0 and word_compare==word:
+                near_word[words[i+1]] = tf[words[i+1]]
+                near_word[words[i-1]] = tf[words[i-1]]
+            near_words_list[word] = near_word
+
+    return near_words_list
