@@ -21,7 +21,7 @@ def get_data_information(texts):
     """
     This function is used to extract information from a set of documents (TF, IDF, TF_IDF).
 
-    :return: TF, IDF and TF_IDF values.
+    :return: TF, DF, IDF and TF_IDF values.
     """
 
     n_docs = 3.0 #number of documents
