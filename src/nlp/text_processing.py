@@ -30,6 +30,10 @@ def get_data_information(texts):
     sum_words = [sum(list(freq.values())) for freq in freq_texts]
     tf = [calculate_tf(frequency, sum) for frequency, sum in zip(freq_texts, sum_words)] #TF calculation
 
+    tf_mean = dict(Counter(tf[0]) + Counter(tf[1]) + Counter(tf[2]))
+    for item, count in tf_mean.items():
+        tf_mean[item] /= 3
+
     frequency_count = freq_texts.copy()
     frequency_count[0] = {x: 1.0 for x, y in frequency_count[0].items()}
     frequency_count[1] = {x: 1.0 for x, y in frequency_count[1].items()}
@@ -40,12 +44,16 @@ def get_data_information(texts):
     idf = df.copy()
     idf.update((x, math.log10(float(n_docs/y))) for x, y in idf.items()) #IDF calculation
 
-    tf_idf = []
-    tf_idf.append({x:y*tf[0][x] for x, y in idf.items() if x in tf[0]}) # TF_IDF calculation from the first document
-    tf_idf.append({x:y*tf[1][x] for x, y in idf.items() if x in tf[1]}) # TF_IDF calculation from the second document
-    tf_idf.append({x:y*tf[2][x] for x, y in idf.items() if x in tf[2]}) # TF_IDF calculation from the third document
+    # tf_idf = []
+    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[0]}) # TF_IDF calculation from the first document
+    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[1]}) # TF_IDF calculation from the second document
+    # tf_idf.append({x:y*tf_mean[x] for x, y in idf.items() if x in tf[2]}) # TF_IDF calculation from the third document
 
-    return tf, df, idf, tf_idf
+    # tf_idf_mean = dict(Counter(tf_idf[0]) + Counter(tf_idf[1]) + Counter(tf_idf[2]))
+
+    tf_idf = {x:y*tf_mean[x] for x, y in idf.items()}
+
+    return tf, df, idf, tf_idf, tf_mean
 
 
 def get_near_terms(words, tf, tf_idf):
