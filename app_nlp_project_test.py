@@ -2,7 +2,7 @@ from typing import Text
 import src.utils.read_file as rf
 from src.nlp.preprocessing import TextPreprocessor
 import src.nlp.text_processing as txt_process
-from src.nlp.cloud import create_cloud
+#from src.nlp.cloud import create_cloud
 
 # All three text files in on single array -> pdf_files
 pdf_files = [rf.read_file('data/nlp/texto1.pdf'), rf.read_file('data/nlp/texto2.pdf'), rf.read_file('data/nlp/texto3.pdf')]
