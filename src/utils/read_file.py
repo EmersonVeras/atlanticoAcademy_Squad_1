@@ -22,13 +22,13 @@ def read_file(file_path):
     return text_str
 
 
-def format_and_generate_csv(all_words, all_near_words, all_tf_idf):
-    """
-    Generate a CSV file with all the words from the documents and the respective nearest words and its weights
+# def format_and_generate_csv(all_words, all_near_words, all_tf_idf):
+#     """
+#     Generate a CSV file with all the words from the documents and the respective nearest words and its weights
 
-    :param all_words: All documents' words (tokens).
-    :param all_near_words: All documents' nearest words list.
-    :param all_tf_idf: All documents' TF-IDF.
-    """
-    with open('')
-    pass
+#     :param all_words: All documents' words (tokens).
+#     :param all_near_words: All documents' nearest words list.
+#     :param all_tf_idf: All documents' TF-IDF.
+#     """
+#     with open('')
+#     pass
