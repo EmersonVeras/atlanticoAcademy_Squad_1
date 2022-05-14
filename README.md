@@ -41,4 +41,4 @@ This is an assignment from the [Instituto Atlântico's Cognitive Computing Bootc
 | Emerson                      |              |                 |
 | Felipe Araújo                | felipe-araujo|                 |  
 | Paulo Vinicius P. Pinheiro   |   paulovpp   | (88)9 9723-6607 |
-| Rômulo                       |              |                 |
+| Rômulo                       |   romulopm2  |                 |
