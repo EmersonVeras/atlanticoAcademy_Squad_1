@@ -65,9 +65,14 @@ def get_near_terms(words, tf, tf_idf):
     for word in five_most_common:
         near_word = {}
         for i, word_compare in enumerate(words):
-            if i != 0 and word_compare==word:
+            if i != 0 and i<len(words) and word_compare==word:
                 near_word[words[i+1]] = tf[words[i+1]]
                 near_word[words[i-1]] = tf[words[i-1]]
+            elif i == 0 and word_compare==word:
+                near_word[words[i+1]] = tf[words[i+1]]
+            elif i == len(words) and word_compare==word:
+                near_word[words[i-1]] = tf[words[i-1]]
+
             near_words_list[word] = near_word
 
     return near_words_list

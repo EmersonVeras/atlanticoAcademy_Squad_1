@@ -16,7 +16,9 @@ stage0 = preprocessor.transform(pdf_files[0])
 text_tokenized = [preprocessor.transform(text) for text in pdf_files]
 tf, idf, tf_idf = txt_process.get_data_information(text_tokenized)
 
-near_words_list = txt_process.get_near_terms(text_tokenized[0], tf[0], tf_idf[0])
-print(near_words_list)
+near_words_list = [txt_process.get_near_terms(text_tokenized[i], tf[i], tf_idf[i]) for i in range(3)]
+
+rf.format_and_generate_csv(text_tokenized, near_words_list, tf)
+
 
 
