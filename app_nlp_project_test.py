@@ -1,11 +1,10 @@
+from encodings import normalize_encoding
 from typing import Text
 import src.utils.read_file as rf
 from src.nlp.preprocessing import TextPreprocessor
 import src.nlp.text_processing as txt_process
 from src.nlp.text_processing import create_dataframe, generate_csv
-import pandas as pd
-import numpy as np
-
+from src.nlp.visualization import plot_graph
 
 # All three text files in on single array -> pdf_files
 pdf_files = [rf.read_file('data/nlp/texto1.pdf'), rf.read_file('data/nlp/texto2.pdf'), rf.read_file('data/nlp/texto3.pdf')]
@@ -24,8 +23,7 @@ print(sum_near_words_list)
 # near_words_df = {sum_near_words_list.keys(): sum_near_words_list.values()}
 # near_words_df = pd.DataFrame(near_words_df)
 
-
-
 new_df = create_dataframe(tf_mean, df, idf, tf_idf_mean)
 
 generate_csv('values.csv', new_df)
+plot_graph(new_df, sum_near_words_list)
