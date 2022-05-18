@@ -1,5 +1,4 @@
 import networkx as nx
-from mycolorpy import colorlist as mcp
 import matplotlib.pyplot as plt
 import pandas as pd
 
@@ -34,7 +33,6 @@ def plot_graph(new_df, sum_near_words_list):
         nodes_size.append(nsize)
     
     nx.draw_networkx(g,pos, node_size=nodes_size, cmap = cmap, 
-                    node_color=colors, edge_color='grey', font_size=15, width=1, alpha=0.8, font_family = 'Ubuntu')
+                    node_color=colors, edge_color='grey', font_size=15, alpha=0.8)
     plt.title("Network diagram of Top Terms", fontsize=16)
     plt.show()
-

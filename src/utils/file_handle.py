@@ -1,5 +1,4 @@
 import sys, fitz
-import csv
 
 sys.stdout.reconfigure(encoding='utf-8')
 
@@ -24,20 +23,13 @@ def read_file(file_path):
     return text_str
 
 
-def format_and_generate_csv(all_words, all_tf, all_df, all_idf, all_tf_idf):
+def generate_csv(file, database):
     """
     Generate a CSV file with all the words from the documents and the respective nearest words and its weights
 
-    :param all_words: All documents' words (tokens).
-    :param all_tf: All documents' TF.
-    :param all_df: All documents' DF.
-    :param all_idf: All documents' IDF.
-    :param all_tf_idf: All documents' TF-IDF.
-
+    :param file: The path to save the CSV.
+    :param database: The dataframe with the data.
+    :return: If path_or_buf is None, returns the resulting csv format as a string. Otherwise returns None.
     """
-
-    print(0)
-
-    # with open('data/nlp/data.csv', 'w', encoding='UTF-8') as f:
-    #     writer = csv.writer(f)
-
+    df = database
+    return df.to_csv(file, index = False)
