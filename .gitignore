@@ -160,3 +160,124 @@ cython_debug/
 #.idea/
 
 .DS_Store
+Golden imgs/img(0)_gold.jpg
+Golden imgs/img(1)_gold.jpg
+Golden imgs/img(2)_gold.jpg
+Golden imgs/img(3)_gold.jpg
+Golden imgs/img(4)_gold.jpg
+Golden imgs/img(5)_gold.jpg
+Golden imgs/img(6)_gold.jpg
+Golden imgs/img(7)_gold.jpg
+Golden imgs/img(8)_gold.jpg
+Golden imgs/img(9)_gold.jpg
+Golden imgs/img(10)_gold.jpg
+Golden imgs/img(11)_gold.jpg
+Golden imgs/img(12)_gold.jpg
+Golden imgs/img(13)_gold.jpg
+Golden imgs/img(14)_gold.jpg
+Golden imgs/img(15)_gold.jpg
+Golden imgs/img(16)_gold.jpg
+Golden imgs/img(17)_gold.jpg
+Golden imgs/img(18)_gold.jpg
+Golden imgs/img(19)_gold.jpg
+Raw imgs/Img (1).jpg
+Raw imgs/Img (2).jpg
+Raw imgs/Img (3).jpg
+Raw imgs/Img (4).jpg
+Raw imgs/Img (5).jpg
+Raw imgs/Img (6).jpg
+Raw imgs/Img (7).jpg
+Raw imgs/Img (8).jpg
+Raw imgs/Img (9).jpg
+Raw imgs/Img (10).jpg
+Raw imgs/Img (11).jpg
+Raw imgs/Img (12).jpg
+Raw imgs/Img (13).jpg
+Raw imgs/Img (14).jpg
+Raw imgs/Img (15).jpg
+Raw imgs/Img (16).jpg
+Raw imgs/Img (17).jpg
+Raw imgs/Img (18).jpg
+Raw imgs/Img (19).jpg
+Raw imgs/Img (20).jpg
+Raw imgs/Img (21).jpg
+Raw imgs/Img (22).jpg
+Raw imgs/Img (23).jpg
+Raw imgs/Img (24).jpg
+Raw imgs/Img (25).jpg
+Raw imgs/Img (26).jpg
+Raw imgs/Img (27).jpg
+Raw imgs/Img (28).jpg
+Raw imgs/Img (29).jpg
+Raw imgs/Img (30).jpg
+Raw imgs/Img (31).jpg
+Raw imgs/Img (32).jpg
+Raw imgs/Img (33).jpg
+Raw imgs/Img (34).jpg
+Raw imgs/Img (35).jpg
+Raw imgs/Img (36).jpg
+Raw imgs/Img (37).jpg
+Raw imgs/Img (38).jpg
+Raw imgs/Img (39).jpg
+Raw imgs/Img (40).jpg
+Raw imgs/Img (41).jpg
+Raw imgs/Img (42).jpg
+Raw imgs/Img (43).jpg
+Raw imgs/Img (44).jpg
+Raw imgs/Img (45).jpg
+Raw imgs/Img (46).jpg
+Raw imgs/Img (47).jpg
+Raw imgs/Img (48).jpg
+Raw imgs/Img (49).jpg
+Raw imgs/Img (50).jpg
+Raw imgs/Img (51).jpg
+Raw imgs/Img (52).jpg
+Raw imgs/Img (53).jpg
+Raw imgs/Img (54).jpg
+Raw imgs/Img (55).jpg
+Raw imgs/Img (56).jpg
+Raw imgs/Img (57).jpg
+Raw imgs/Img (58).jpg
+Raw imgs/Img (59).jpg
+Raw imgs/Img (60).jpg
+Raw imgs/Img (61).jpg
+Raw imgs/Img (62).jpg
+Raw imgs/Img (63).jpg
+Raw imgs/Img (64).jpg
+Raw imgs/Img (65).jpg
+Raw imgs/Img (66).jpg
+Raw imgs/Img (67).jpg
+Raw imgs/Img (68).jpg
+Raw imgs/Img (69).jpg
+Raw imgs/Img (70).jpg
+Raw imgs/Img (71).jpg
+Raw imgs/Img (72).jpg
+Raw imgs/Img (73).jpg
+Raw imgs/Img (74).jpg
+Raw imgs/Img (75).jpg
+Raw imgs/Img (76).jpg
+Raw imgs/Img (77).jpg
+Raw imgs/Img (78).jpg
+Raw imgs/Img (79).jpg
+Raw imgs/Img (80).jpg
+Raw imgs/Img (81).jpg
+Raw imgs/Img (82).jpg
+Raw imgs/Img (83).jpg
+Raw imgs/Img (84).jpg
+Raw imgs/Img (85).jpg
+Raw imgs/Img (86).jpg
+Raw imgs/Img (87).jpg
+Raw imgs/Img (88).jpg
+Raw imgs/Img (89).jpg
+Raw imgs/Img (90).jpg
+Raw imgs/Img (91).jpg
+Raw imgs/Img (92).jpg
+Raw imgs/Img (93).jpg
+Raw imgs/Img (94).jpg
+Raw imgs/Img (95).jpg
+Raw imgs/Img (96).jpg
+Raw imgs/Img (97).jpg
+Raw imgs/Img (98).jpg
+Raw imgs/Img (99).jpg
+Raw imgs/Img (100).jpg
+src/pdi/test.py
