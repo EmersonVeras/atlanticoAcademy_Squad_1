@@ -1,3 +1,7 @@
+
+# Datasets - these should be downloaded separately
+data/pdi/**/*.jpg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

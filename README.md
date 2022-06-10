@@ -66,7 +66,7 @@ TODO no additional packages for now
 
 5. Run the application entry point:
 
-`python3 app_nlp_project.py`
+`python3 app_pdi_project.py`
 
 
 # Team (**Squad 1**)
@@ -78,3 +78,6 @@ TODO no additional packages for now
 | Felipe Araújo              | felipe-araujo |                 |
 | Paulo Vinicius P. Pinheiro | paulovpp      | (88)9 9723-6607 |
 | Rômulo                     | romulopm2     |                 |
+
+
+Project template: https://github.com/Alysonbnr/template_bootcamp
