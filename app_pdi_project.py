@@ -3,7 +3,7 @@
 from turtle import title
 import cv2 as cv
 from src.pdi.file_utils import list_images
-#from src.pdi.generate_metrics import segment
+from src.pdi.generate_metrics import segment
 from src.pdi.plot_utils import plot_images
 
 def main():
@@ -16,11 +16,15 @@ def main():
     print(intersection)
 
     #print([img.replace('.jpg', '') + '_gold.jpg' for img in raw_imgs])
-    paths = ["data/pdi/Raw imgs/" + img for img in list_images("data/pdi/Raw imgs")[0:3]]
-    images = [cv.imread(path) for path in paths]
+    #paths = ["data/pdi/Raw imgs/" + img for img in list_images("data/pdi/Raw imgs")[0:3]]
     
+    #images = [cv.imread(path) for path in paths]
+    target = "data/pdi/Raw imgs/" + list_images("data/pdi/Raw imgs")[0]
+    img = cv.imread(target)
+    segmented_images = segment(img)
 
-    plot_images(images, paths)
+
+    plot_images(segmented_images, ["1", "2", "3"])
 
 
 
