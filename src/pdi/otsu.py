@@ -4,6 +4,7 @@
 import matplotlib.pyplot as plt
 from skimage import data
 from skimage.filters import threshold_otsu
+import cv2
 
 def otsu_segmentantion(image):
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
