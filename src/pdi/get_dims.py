@@ -8,15 +8,14 @@ from pandas import array
 
 # name = 'Test\img(' + str(1+1) + ')_gold.jpg'
 
-def get_dimensions(name: str):
+def get_dimensions(image):
     """
-    Gets the dimensions of an golden pattern image.
-docstring
+    Gets the dimensions of a binary image.
+    By default we assume that the objet being measured is white, and the background is black.
     Args:
-        name (_type_): _description_
-
+        image: binary image
     Returns:
-        _type_: _description_
+        tuple with width, heigth and area of the image.
     """    
     count = []
     hor = 0

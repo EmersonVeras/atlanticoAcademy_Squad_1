@@ -7,7 +7,8 @@ from skimage.filters import threshold_otsu
 import cv2
 
 def otsu_segmentantion(image):
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    thresh = threshold_otsu(image)
-    binary = image > thresh
+    #image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    b, g, r = cv2.split(image)
+    thresh = threshold_otsu(g)
+    binary = g > thresh
     return binary

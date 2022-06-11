@@ -1,6 +1,7 @@
 from typing import final
 import cv2
 from pandas import array
+from file_utils import list_images
 
 def convert_to_gold(name: str):
     """
@@ -14,8 +15,13 @@ def convert_to_gold(name: str):
     return binI
 
 
-    
-for i in range(20):
-    name = 'Test\Img (' + str(i+1) + ').jpg'
-    final_image = convert_to_gold(name)
-    cv2.imwrite('Test\img(' + str(i+1) + ')_gold.jpg', final_image)
+base_dir = "data/pdi/Raw imgs/"    
+for img in list_images(base_dir):
+    #name = 'Test\Img (' + str(i+1) + ').jpg'
+    original = base_dir + img
+    processed = "data/pdi/golden_patterns/" + img
+    print(original,  " => ", processed)
+    final_image = convert_to_gold(original)
+
+    # uncomment the following line to write the image
+    #cv2.imwrite(processed, final_image)
