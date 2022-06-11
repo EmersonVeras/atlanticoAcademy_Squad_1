@@ -15,14 +15,16 @@ def kmeans_segmentation(image):
     kmeans = KMeans(n_clusters=2, random_state=0).fit(pic_n)
     pic2show = kmeans.cluster_centers_[kmeans.labels_]
     
-    cluster_pic = pic2show.reshape(pic.shape[0], pic.shape[1], pic.shape[2]) * 255    
+    cluster_pic = pic2show.reshape(pic.shape[0], pic.shape[1], pic.shape[2])    
     cluster_pic = rgb2gray(cluster_pic)
-    cluster_pic = cluster_pic.astype(np.int16)
+    #cluster_pic = cluster_pic.astype(np.int16)
 
     # to make sure that or object of interest is white
     # we assume that most of the image is background, so if the mean is more than 0.5
     # it means that the background is white 
     if cluster_pic.mean() > 0.5:
+        invert = True
+    cluster_pic = cluster_pic > 0.5
+    if invert:
         cluster_pic = ~cluster_pic
-    
     return cluster_pic

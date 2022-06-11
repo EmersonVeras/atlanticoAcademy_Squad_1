@@ -23,7 +23,7 @@ def get_dimensions(image):
 
     for y in range(0, image.shape[0]):
         for x in range(0, image.shape[1]):
-            if (image[y, x] == 255).any():
+            if (image[y, x] == True).any():
                 hor+=1
         count.append((hor))
         hor = 0

@@ -15,7 +15,6 @@ def main():
     intersection = [img for img in raw_imgs if img in golden_pattern_imgs]
     print("Images that have a golden pattern of segmentation")
     print(intersection)
-
     
     target = intersection[0]
     img = cv.imread("data/pdi/Raw imgs/" +  target)
@@ -25,7 +24,7 @@ def main():
 
     images = [img, golden_pattern]
     images.extend(segmented_images)
-    print([get_dimensions(img) for img in segmented_images])
+    
     plot_images(images, ["Original", "Golden Pattern", "Chan vese", "Otsu", "KMeans"])
 
 
