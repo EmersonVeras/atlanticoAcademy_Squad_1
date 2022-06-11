@@ -5,22 +5,28 @@ import cv2 as cv
 from src.pdi.file_utils import list_images
 from src.pdi.generate_metrics import segment
 from src.pdi.plot_utils import plot_images
+from src.pdi.get_dims import get_dimensions
+import matplotlib.pyplot as plt
 
 def main():
     raw_imgs = list_images("data/pdi/Raw imgs")
     golden_pattern_imgs = list_images("data/pdi/golden_patterns")
     
     intersection = [img for img in raw_imgs if img in golden_pattern_imgs]
+    print("Images that have a golden pattern of segmentation")
     print(intersection)
 
     
-    target = "data/pdi/Raw imgs/" + list_images("data/pdi/Raw imgs")[1]
-    img = cv.imread(target)
+    target = intersection[0]
+    img = cv.imread("data/pdi/Raw imgs/" +  target)
+    golden_pattern = plt.imread("data/pdi/golden_patterns/" +  target).astype(int)
+
     segmented_images = segment(img)
 
-    images = [img]
+    images = [img, golden_pattern]
     images.extend(segmented_images)
-    plot_images(images, ["Original", "1", "2", "3"])
+    print([get_dimensions(img) for img in segmented_images])
+    plot_images(images, ["Original", "Golden Pattern", "Chan vese", "Otsu", "KMeans"])
 
 
 

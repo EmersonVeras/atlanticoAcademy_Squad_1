@@ -2,7 +2,6 @@
 import matplotlib.pyplot as plt
 from .chan_vese import chan_vese_segmentation
 from .otsu import otsu_segmentantion
-from .watershed import watershed_segmentation
 from .kmeans import kmeans_segmentation
 
 def segment(image):

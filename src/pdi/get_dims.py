@@ -19,7 +19,7 @@ def get_dimensions(image):
     """    
     count = []
     hor = 0
-    image = cv2.imread(name)
+    #image = cv2.imread(name)
 
     for y in range(0, image.shape[0]):
         for x in range(0, image.shape[1]):
