@@ -32,4 +32,7 @@ def get_dimensions(image):
     width = image.shape[1]
     max_height = image.shape[0] - count.count(0)
     max_width = max(count)
-    return height, width, max_height, max_width
+
+    # since this is a binary image, sum will return the number of white pixels 
+    area = sum(image)
+    return height, width, max_height, max_width, area
