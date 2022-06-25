@@ -1,13 +1,8 @@
-#import src.pdi.get_dims
-#import src.pdi.generate_csv
-from fileinput import filename
-from turtle import title
 import cv2 as cv
 from src.pdi.file_utils import list_images
 from src.pdi.generate_metrics import segment
 from src.pdi.generate_metrics import calculate_iou, best_score, name
 from src.pdi.plot_utils import plot_images
-from src.pdi.get_dims import get_dimensions
 from src.pdi.generate_csv import report_image_dimensions
 import matplotlib.pyplot as plt
 import pandas as pd
