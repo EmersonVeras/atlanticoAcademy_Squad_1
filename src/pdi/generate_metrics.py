@@ -15,13 +15,13 @@ def segment(image, technique = None):
     techniques = [chan_vese_segmentation, otsu_segmentantion, kmeans_segmentation]
     if technique is None:
         return [f(image) for f in techniques]    
-    elif technique >0 and technique<=2:
+    elif technique >=0 and technique<=2:
         return [techniques[technique](image)]
     else:
         raise Exception("Unknown technique " + str(technique))
         
 def name(technique):
-    if technique >0 and technique<=2:
+    if technique >=0 and technique<=2:
         names = ["Chan Vese", "Otsu", "K-Means"]
         return names[technique]
     else:

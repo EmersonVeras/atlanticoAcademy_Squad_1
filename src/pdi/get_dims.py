@@ -34,5 +34,5 @@ def get_dimensions(image):
     max_width = max(count)
 
     # since this is a binary image, sum will return the number of white pixels 
-    area = sum(image)
+    area = sum(sum(image))
     return height, width, max_height, max_width, area

@@ -1,8 +1,8 @@
 from email.mime import base
-from get_dims import get_dimensions # import get_dims file
+from src.pdi.get_dims import get_dimensions # import get_dims file
 import csv
 import os
-from file_utils import list_images
+from src.pdi.file_utils import list_images
 import cv2 as cv
 
 # Create a folder named Golden imgs

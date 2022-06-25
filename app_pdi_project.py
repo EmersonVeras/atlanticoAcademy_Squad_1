@@ -8,7 +8,9 @@ from src.pdi.generate_metrics import segment
 from src.pdi.generate_metrics import calculate_iou, best_score, name
 from src.pdi.plot_utils import plot_images
 from src.pdi.get_dims import get_dimensions
+from src.pdi.generate_csv import report_image_dimensions
 import matplotlib.pyplot as plt
+import pandas as pd
 
 def main():
     raw_imgs = list_images("data/pdi/Raw imgs")
@@ -17,11 +19,11 @@ def main():
     intersection = [img for img in raw_imgs if img in golden_pattern_imgs]
     print("Images that have a golden pattern of segmentation[" + str(len(intersection)) + "]:")
     print(intersection)
-    
-    target = intersection[0]
 
+    report_image_dimensions('data/pdi/golden_patterns/', 'golden_patterns_dims.csv')
+    
     iou_results = []
-    for target in intersection:
+    for target in intersection:        
         print("Processing " + target)
         img = cv.imread("data/pdi/Raw imgs/" +  target)
         golden_pattern = plt.imread("data/pdi/golden_patterns/" +  target).astype(int)[:,:,0]
@@ -32,9 +34,25 @@ def main():
         images = [img, golden_pattern]
         images.extend(segmented_images)
         plot_images(images, ["Original", "Golden Pattern", "Chan vese", "Otsu", "KMeans"], filename)
+    
+    df = pd.DataFrame(iou_results, columns=[name(i) for i in range(0, 3)])
+    df.to_csv('iou_metrics.csv')
 
     best = best_score(iou_results)
+    #best = 2
     print("Best technique is " + name(best))
+
+    for target in intersection:
+        print("Processing " + target + " with " + name(best))
+        img = cv.imread("data/pdi/Raw imgs/" +  target)        
+        filename = "data/pdi/best/" + target
+        segmented_images = segment(img, technique=best)
+
+        images = [img, segmented_images[0]]
+        plot_images(images, ["Original", name(best)], filename)
+        cv.imwrite("data/pdi/raw_segmented_best/" +  target, segmented_images[0]*255)
+
+    report_image_dimensions('data/pdi/raw_segmented_best/', 'best_seg_dims.csv')
     
     
 
