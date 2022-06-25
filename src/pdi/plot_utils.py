@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 
-def plot_images(images, titles):
+def plot_images(images, titles, filename = None):
     fig, axes = plt.subplots(ncols=len(images), figsize=(9, 3), sharex=True, sharey=True)
     ax = axes.ravel()
 
@@ -12,4 +12,7 @@ def plot_images(images, titles):
     for a in ax:
         a.set_axis_off()
     fig.tight_layout()
-    plt.show()
+    if filename:
+        plt.savefig(filename)
+    else:
+        plt.show()
