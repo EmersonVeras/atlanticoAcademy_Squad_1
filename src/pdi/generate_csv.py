@@ -7,7 +7,6 @@ import cv2 as cv
 
 # Create a folder named Golden imgs
 # File name of the gold pattern image: img(n)_gold.jpg, where n = {0..19}
-# Should we create separate functions here? At least two?
 
 def report_image_dimensions(base_dir, csv_file_name="data.csv"):
     csv_height = []

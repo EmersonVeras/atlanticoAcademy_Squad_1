@@ -1,6 +1,4 @@
-from typing import final
 import cv2
-from pandas import array
 from file_utils import list_images
 
 def convert_to_gold(name: str):
@@ -13,7 +11,6 @@ def convert_to_gold(name: str):
     suave = cv2.GaussianBlur(img_gray, (7, 7), 0) # aplica blur  
     (T, binI) = cv2.threshold(suave, 160, 255, cv2.THRESH_BINARY_INV)
     return binI
-
 
 base_dir = "data/pdi/Raw imgs/"    
 for img in list_images(base_dir):

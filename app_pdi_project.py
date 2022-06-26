@@ -14,31 +14,34 @@ def main():
     intersection = [img for img in raw_imgs if img in golden_pattern_imgs]
     print("Images that have a golden pattern of segmentation[" + str(len(intersection)) + "]:")
     print(intersection)
-
+    print()
+    
     report_image_dimensions('data/pdi/golden_patterns/', 'golden_patterns_dims.csv')
     
+    #intersection = ['Imgs (40).jpg', 'IMG_20220604_082844.jpg']
     iou_results = []
-    for target in intersection:        
-        print("Processing " + target)
+    total_images = len(intersection)
+    for i, target in enumerate(intersection):
+        print("Processing {} | ({} of {})".format(target, i, total_images))
         img = cv.imread("data/pdi/Raw imgs/" +  target)
         golden_pattern = plt.imread("data/pdi/golden_patterns/" +  target).astype(int)[:,:,0]
         filename = "data/pdi/segmented/" + target
-        segmented_images = segment(img)    
-        iou_results.append(calculate_iou(golden_pattern, segmented_images))
+        segmented_images = segment(img) 
+        
+        iou_results.append([target] + calculate_iou(golden_pattern, segmented_images))
 
-        images = [img, golden_pattern]
-        images.extend(segmented_images)
-        plot_images(images, ["Original", "Golden Pattern", "Chan vese", "Otsu", "KMeans"], filename)
+        images = [img, golden_pattern] + segmented_images
+        plot_images(images, ["Original", "Golden Pattern", "Chan Vese", "Otsu", "K-Means"], filename)
     
-    df = pd.DataFrame(iou_results, columns=[name(i) for i in range(0, 3)])
+    df = pd.DataFrame(iou_results, columns=["file"] + [name(i) for i in range(0, 3)])
     df.to_csv('iou_metrics.csv')
 
     best = best_score(iou_results)
     #best = 2
-    print("Best technique is " + name(best))
+    print("\nBest technique is " + name(best))
 
-    for target in intersection:
-        print("Processing " + target + " with " + name(best))
+    for i, target in enumerate(intersection):        
+        print("Processing {} with {} | ({} of {})".format(target, name(best), i, total_images))
         img = cv.imread("data/pdi/Raw imgs/" +  target)        
         filename = "data/pdi/best/" + target
         segmented_images = segment(img, technique=best)
@@ -49,9 +52,6 @@ def main():
 
     report_image_dimensions('data/pdi/raw_segmented_best/', 'best_seg_dims.csv')
     
-    
-
-
 
 if __name__ == '__main__':
     main()

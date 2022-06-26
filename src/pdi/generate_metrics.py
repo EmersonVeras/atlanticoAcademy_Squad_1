@@ -1,6 +1,3 @@
-
-from re import T
-import matplotlib.pyplot as plt
 from .chan_vese import chan_vese_segmentation
 from .otsu import otsu_segmentantion
 from .kmeans import kmeans_segmentation
