@@ -20,7 +20,7 @@ def report_image_dimensions(base_dir, csv_file_name="data.csv"):
     # Get dimensions of each golden pattern image
     with open(csv_file_name,mode= 'w') as csvfile:
         csv_file = csv.writer(csvfile, delimiter= ',', quoting= csv.QUOTE_MINIMAL)
-        csv_file.writerow(['File_name', 'Original_height', 'Original_width', 'Max_height', 'Max_width', 'Area']) # Header
+        csv_file.writerow(['filename', 'original_height', 'original_width', 'max_height', 'max_width', 'area']) # Header
 
         for i, file in enumerate(files_list):
             full_path = base_dir + file

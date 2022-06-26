@@ -21,6 +21,7 @@ def main():
     #intersection = ['Imgs (40).jpg', 'IMG_20220604_082844.jpg']
     iou_results = []
     total_images = len(intersection)
+    intersection = []
     for i, target in enumerate(intersection):
         print("Processing {} | ({} of {})".format(target, i, total_images))
         img = cv.imread("data/pdi/Raw imgs/" +  target)

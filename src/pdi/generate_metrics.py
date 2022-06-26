@@ -40,4 +40,6 @@ def best_score(iou_results_matrix):
     Given a matrix of IOU metrics, find the index of the best score based on the mean
     """
     df = pd.DataFrame(iou_results_matrix)
-    return df.mean().idxmax()    
+    #1st col is the name of the file    
+    df.drop(columns=df.columns[0], axis=1, inplace=True)
+    return df.mean().idxmax()
