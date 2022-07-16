@@ -85,12 +85,24 @@ def create_model():
   x = Dropout(0.5)(x)
   x = Dense(256,activation='relu')(x) 
   x = Dropout(0.2)(x)
-  out = Dense(5,activation='softmax')(x) 
+
+  # 3 is the number of classes. May change as we add more images
+  out = Dense(3,activation='softmax')(x) 
 
   tf_model = Model(inputs=vgg.input,outputs=out)
   for layer in tf_model.layers[:20]:
     layer.trainable=False
   return tf_model
+
+
+def train_model(model, X_train, X_val, y_train, y_val):
+  filepath = 'TF-CNN.{epoch:02d}-{loss:.2f}-{accuracy:.2f}-{val_loss:.2f}-{val_accuracy:.2f}.hdf5'
+  lr_red = keras.callbacks.ReduceLROnPlateau(monitor='acc', patience=3, verbose=1, factor=0.5, min_lr=0.000001)
+  chkpoint = keras.callbacks.ModelCheckpoint(filepath, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=1)
+  model.compile(optimizer = Nadam(0.0001) , loss = 'categorical_crossentropy', metrics=["accuracy"])
+
+  history = model.fit(X_train, y_train, batch_size = 1, epochs = 30, initial_epoch = 0, 
+    validation_data = (X_val, y_val), callbacks=[lr_red, chkpoint])
 
 
 def main():
@@ -103,6 +115,8 @@ def main():
 
   model = create_model()
   model.summary()
+
+  train_model(model, X_train, X_val, y_train, y_val)
 
 
 if __name__ == "__main__": 
