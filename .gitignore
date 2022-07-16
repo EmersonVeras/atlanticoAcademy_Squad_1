@@ -8,6 +8,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Saved models
+*.hdf5
+
 # C extensions
 *.so
 

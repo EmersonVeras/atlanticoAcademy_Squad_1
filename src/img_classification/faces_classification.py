@@ -97,9 +97,13 @@ def create_model():
 
 def train_model(model, X_train, X_val, y_train, y_val):
   filepath = 'TF-CNN.{epoch:02d}-{loss:.2f}-{accuracy:.2f}-{val_loss:.2f}-{val_accuracy:.2f}.hdf5'
-  lr_red = keras.callbacks.ReduceLROnPlateau(monitor='acc', patience=3, verbose=1, factor=0.5, min_lr=0.000001)
-  chkpoint = keras.callbacks.ModelCheckpoint(filepath, monitor='val_acc', verbose=0, save_best_only=True, save_weights_only=False, mode='auto', period=1)
-  model.compile(optimizer = Nadam(0.0001) , loss = 'categorical_crossentropy', metrics=["accuracy"])
+  lr_red = keras.callbacks.ReduceLROnPlateau(monitor='accuracy', 
+    patience=3, verbose=1, factor=0.5, min_lr=0.000001)
+  chkpoint = keras.callbacks.ModelCheckpoint(filepath, 
+    monitor='val_accuracy', verbose=0, save_best_only=True, 
+    save_weights_only=False, mode='auto', period=1)
+  model.compile(optimizer = Nadam(0.0001) , loss = 'categorical_crossentropy', 
+    metrics=["accuracy"])
 
   history = model.fit(X_train, y_train, batch_size = 1, epochs = 30, initial_epoch = 0, 
     validation_data = (X_val, y_val), callbacks=[lr_red, chkpoint])
