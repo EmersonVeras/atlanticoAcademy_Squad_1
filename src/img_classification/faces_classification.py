@@ -98,14 +98,14 @@ def create_model():
 
 
 def train_model(model, id, X_train, X_val, y_train, y_val):
-  filepath = id + '_TF-CNN.{epoch:02d}-{loss:.2f}-{accuracy:.2f}-{val_loss:.2f}-{val_accuracy:.2f}.hdf5'
+  filepath = "output/" + id + '_TF-CNN.{epoch:02d}-{loss:.2f}-{accuracy:.2f}-{val_loss:.2f}-{val_accuracy:.2f}.hdf5'
   lr_red = keras.callbacks.ReduceLROnPlateau(monitor='accuracy', 
     patience=3, verbose=1, factor=0.5, min_lr=0.000001)
   chkpoint = keras.callbacks.ModelCheckpoint(filepath, 
     monitor='val_accuracy', verbose=0, save_best_only=True, 
     save_weights_only=False, mode='auto', period=1)
   
-  history_filename = 'log_' + id + '.csv'
+  history_filename = 'output/' + id + '_log.csv'
   history_cb = tf.keras.callbacks.CSVLogger(history_filename, separator=",", append=False)
 
   model_metrics=['accuracy', 
