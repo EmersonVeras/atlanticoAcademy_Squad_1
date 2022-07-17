@@ -49,24 +49,31 @@ from sklearn.model_selection import train_test_split
 
 # Imports from our own files
 from file_utils import list_all_inputs
-from preprocessing import histogram_equalization
+from preprocessing import histogram_equalization, bilateral_filter
 from metrics import sensitivity, specificity
 
 
 # Reading the dataset and creating the labels for input data
-def create_input_labels(hist_equalization=False):  
+def create_input_labels(bilat_filter=False, hist_equalization=False):  
   X_path, labels = list_all_inputs()
   print("\nTotal # of inputs: {}".format(len(X_path)))
   print("Labels: {}".format(labels))
+
+  # Preprocessing
   if hist_equalization:
     print("Applying histogram equalization")
+  if bilat_filter:
+    print("Applying bilateral filter")
+  
   X = []
   y = []
   for i, (folder, label) in enumerate(zip(X_path, labels)):
     for f in folder:
       img = np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA))
-      if(hist_equalization):
+      if hist_equalization:
         img = histogram_equalization(img)
+      if bilat_filter:
+        img = bilateral_filter(img)
       X.append(img)     
       y.append(i)
 
@@ -122,7 +129,7 @@ def train_model(model, id, X_train, X_val, y_train, y_val):
 
 def main():
   # read data and create labels
-  X, y = create_input_labels(hist_equalization=True)
+  X, y = create_input_labels(bilat_filter=True, hist_equalization=True)
 
   # split train and test sets
   X_train, X_val, y_train, y_val = train_test_split(X, y, test_size = 0.2, random_state=42)
@@ -131,7 +138,7 @@ def main():
   model = create_model()
   model.summary()
   
-  train_model(model, "histogram_equalization", X_train, X_val, y_train, y_val)
+  train_model(model, "bilat_filter_hist_equalization", X_train, X_val, y_train, y_val)
 
 
 if __name__ == "__main__": 
