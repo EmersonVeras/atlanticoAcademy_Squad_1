@@ -16,6 +16,9 @@ Requisitos do projeto:
 - É necessário realizar a apresentação das estratégias
 """
 
+# Imports from third parties
+
+
 from PIL import Image
 import cv2
 import numpy as np
@@ -29,8 +32,6 @@ import matplotlib.pyplot as plt
 import random
 import tensorflow as tf
 import cv2 as cv
-import os 
-import glob
 
 import keras
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -45,32 +46,25 @@ from tensorflow.keras import applications
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
 
+# Imports from our own files
+from file_utils import list_all_inputs
+
 
 # Reading the dataset and creating the labels for input data
-def create_input_labels():
-  base_dir = '../../data/faces-classification/'
-  felipe_dir = glob.glob(os.path.join(base_dir + 'felipe/', '*'))
-  emerson_dir = glob.glob(os.path.join(base_dir + 'emerson/', '*'))
-  luan_dir = glob.glob(os.path.join(base_dir + 'luan/', '*'))
-  X_path = felipe_dir + emerson_dir + luan_dir
+def create_input_labels():  
+  X_path, labels = list_all_inputs()
   print("\nTotal # of inputs: {}".format(len(X_path)))
+  print("Labels: {}".format(labels))
   X = []
-  for f in X_path:
-    X.append(np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA)))     
+  y = []
+  for i, (folder, label) in enumerate(zip(X_path, labels)):
+    for f in folder:
+      X.append(np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA)))     
+      y.append(i)
+
   X = np.array(X)
   X = X / 255
 
-  l_felipe = np.zeros(len(felipe_dir))
-  l_felipe_string = ['felipe' for i in range(len(felipe_dir))]
-  
-  l_emerson = np.ones(len(emerson_dir))
-  l_emerson_string = ['emerson' for i in range(len(emerson_dir))]
-  
-  l_luan = 2*np.ones(len(luan_dir))
-  l_luan_string = ['rose' for i in range(len(luan_dir))]
-  
-  y_string = np.concatenate((l_felipe_string, l_emerson_string, l_luan_string))
-  y = np.concatenate((l_felipe, l_emerson, l_luan))
   y = to_categorical(y, 3)
 
   return X, y
