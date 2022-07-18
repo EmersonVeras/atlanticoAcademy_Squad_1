@@ -36,9 +36,7 @@ def subtract_mean_bgr_value(img):
 
 def subtract_mean_yuv_value(image_bgr):
     image_yuv = cv.cvtColor(image_bgr, cv.COLOR_BGR2YUV)
-
     image_yuv[:, :, 0] = image_yuv[:, :, 0] - image_yuv[:, :, 0].mean()
-
     return cv.cvtColor(image_yuv, cv.COLOR_YUV2BGR)
 
 """
@@ -66,8 +64,13 @@ def median_filter(img):
 def canny_edge_detector():
     pass
 
-def sobel_filter():
-    pass
+def sobel_filter(img):
+    image_bgr = img
+    image_yuv = cv.cvtColor(image_bgr, cv.COLOR_BGR2YUV)
+    image_yuv[:, :, 0] = cv.Sobel(image_yuv[:, :, 0], cv.CV_64F, 1, 0, ksize=5)
+
+    image_bgr = cv.cvtColor(image_yuv, cv.COLOR_YUV2BGR)
+    return image_bgr
 
 def blur(img):
     return cv.blur(img,(5,5))
@@ -140,6 +143,12 @@ def test_bilateral_filter():
     cv.imshow("bilateral", np.concatenate((x, bilateral), axis=1))
     cv.waitKey(0)
 
+def test_sobel_filter():
+    x = get_sample_image()
+    sobel = sobel_filter(x)
+    cv.imshow("sobel", np.concatenate((x, sobel), axis=1))
+    cv.waitKey(0)
+
 
 def test_hist_equ_bilat_filter():
     x = get_sample_image()
@@ -155,6 +164,7 @@ if __name__ == '__main__':
     #test_subtract_mean_bgr_value()
     #test_subtract_mean_yuv_value()
     #test_blur()
-    #test_median_filter()
+    test_median_filter()
     #test_bilateral_filter()
-    test_hist_equ_bilat_filter()
+    #test_hist_equ_bilat_filter()
+    #test_sobel_filter()
