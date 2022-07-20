@@ -69,7 +69,8 @@ def create_input_labels(bilat_filter=False, hist_equalization=False):
   y = []
   for i, (folder, label) in enumerate(zip(X_path, labels)):
     for f in folder:
-      img = np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA))
+      colored_img = np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA))
+      img = cv.cvtColor(colored_img, cv.COLOR_BGR2GRAY)
       if hist_equalization:
         img = histogram_equalization(img)
       if bilat_filter:
@@ -86,7 +87,9 @@ def create_input_labels(bilat_filter=False, hist_equalization=False):
 
 def create_model():
   # load a pretrained network
-  vgg = tensorflow.keras.applications.VGG16(input_shape=(224,224,3), include_top = False, weights= 'imagenet')
+
+  # MUDAR ESSA REDE - VGG SO ACEITA IMAGENS COLORIDAS
+  vgg = tensorflow.keras.applications.VGG16(input_shape=(224,224,1), include_top = False, weights= 'imagenet')
   print(vgg.summary())
   x = vgg.output
   x = Flatten()(x)
@@ -138,7 +141,7 @@ def main():
   model = create_model()
   model.summary()
   
-  train_model(model, "bilat_filter_hist_equalization", X_train, X_val, y_train, y_val)
+  train_model(model, "bilat_filter_hist_equalization_2", X_train, X_val, y_train, y_val)
 
 
 if __name__ == "__main__": 

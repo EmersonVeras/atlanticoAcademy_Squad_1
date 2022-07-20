@@ -47,16 +47,11 @@ See
     the conversion, we can apply equalizeHist to the image and then convert it back to
     BGR or RGB:
 """
-def histogram_equalization(img):
-    image_bgr = img
-    image_yuv = cv.cvtColor(image_bgr, cv.COLOR_BGR2YUV)
-    image_yuv[:, :, 0] = cv.equalizeHist(image_yuv[:, :, 0])
-
-    image_bgr = cv.cvtColor(image_yuv, cv.COLOR_YUV2BGR)
-    return image_bgr
+def histogram_equalization(img):    
+    return cv.equalizeHist(img)
 
 def bilateral_filter(img):
-    return cv.bilateralFilter(img, 15, 75, 75)
+    return cv.bilateralFilter(img, 10, 10, 50)
 
 def median_filter(img):
     return cv.medianBlur(img, 5)
@@ -65,21 +60,14 @@ def canny_edge_detector():
     pass
 
 def sobel_filter(img):
-    image_bgr = img
-    image_yuv = cv.cvtColor(image_bgr, cv.COLOR_BGR2YUV)
-    image_yuv[:, :, 0] = cv.Sobel(image_yuv[:, :, 0], cv.CV_64F, 1, 0, ksize=5)
-
-    image_bgr = cv.cvtColor(image_yuv, cv.COLOR_YUV2BGR)
-    return image_bgr
+    return cv.Sobel(img, cv.CV_64F, 1, 0, ksize=5)
 
 def blur(img):
     return cv.blur(img,(5,5))
 
 def read_normalize_img(f):
-    x = np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA))
-    #x = cv.imread(f)
-    #x = x/255
-    return x
+    img = np.array(cv.resize(cv.imread(f), (224,224), interpolation = cv.INTER_AREA))
+    return cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     
 
 # Tests
@@ -160,11 +148,11 @@ def test_hist_equ_bilat_filter():
     cv.waitKey(0)
 
 if __name__ == '__main__':
-    #test_histogram_equalization()
+    test_histogram_equalization()
     #test_subtract_mean_bgr_value()
     #test_subtract_mean_yuv_value()
     #test_blur()
-    test_median_filter()
+    #test_median_filter()
     #test_bilateral_filter()
     #test_hist_equ_bilat_filter()
     #test_sobel_filter()
