@@ -61,8 +61,11 @@ def bilateral_filter(img):
 def median_filter(img):
     return cv.medianBlur(img, 5)
 
-def canny_edge_detector():
-    pass
+def sharpen(img):
+    kernel_sharpening = np.array([[-1,-1,-1], 
+                              [-1,9,-1], 
+                              [-1,-1,-1]])
+    return cv.filter2D(img, -1, kernel_sharpening)
 
 def sobel_filter(img):
     image_bgr = img
@@ -159,12 +162,18 @@ def test_hist_equ_bilat_filter():
     cv.imshow("hist_equ_bilat_filter", np.concatenate((x, x2), axis=1))
     cv.waitKey(0)
 
+def test_sharpen():
+    x = get_sample_image()    
+    cv.imshow("sharpen", np.concatenate((x, sharpen(x)), axis=1))
+    cv.waitKey(0)
+
 if __name__ == '__main__':
     #test_histogram_equalization()
     #test_subtract_mean_bgr_value()
     #test_subtract_mean_yuv_value()
     #test_blur()
-    test_median_filter()
+    #test_median_filter()
+    test_sharpen()
     #test_bilateral_filter()
     #test_hist_equ_bilat_filter()
     #test_sobel_filter()

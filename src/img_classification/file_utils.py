@@ -7,7 +7,7 @@ Returns:
     A list with the corresponding labels for each directory
 """
 def list_all_inputs():
-  base_dir = '../../data/faces-classification/'
+  base_dir = '../../data/faces-classification/training/'
   felipe_dir = glob.glob(os.path.join(base_dir + 'felipe/', '*'))
   emerson_dir = glob.glob(os.path.join(base_dir + 'emerson/', '*'))
   luan_dir = glob.glob(os.path.join(base_dir + 'luan/', '*'))
