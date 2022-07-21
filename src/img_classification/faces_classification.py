@@ -129,7 +129,7 @@ def train_model(model, id, X_train, X_val, y_train, y_val):
 
 def main():
   # read data and create labels
-  X, y = create_input_labels(hist_equalization=True)
+  X, y = create_input_labels(hist_equalization=True, bilat_filter=True)
 
   # split train and test sets
   X_train, X_val, y_train, y_val = train_test_split(X, y, test_size = 0.2, random_state=42)
@@ -138,7 +138,7 @@ def main():
   model = create_model()
   model.summary()
   
-  train_model(model, "hist_equalization", X_train, X_val, y_train, y_val)
+  train_model(model, "hist_equalization_bilat_filter", X_train, X_val, y_train, y_val)
 
 
 if __name__ == "__main__": 
